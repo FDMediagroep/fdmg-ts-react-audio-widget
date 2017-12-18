@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AudioWidget renders correctly 1`] = `
+<div
+  className="audio"
+>
+  <audio
+    autoPlay={false}
+    onCanPlay={[Function]}
+    onEnded={[Function]}
+    onLoad={[Function]}
+    onLoadStart={[Function]}
+    onLoadedData={[Function]}
+    onSeeked={[Function]}
+    onSeeking={[Function]}
+    onTimeUpdate={[Function]}
+    src="test.mp3"
+  />
+  <ProgressBar
+    autoPlay={false}
+    currentTime={0}
+    duration={0}
+    hideTimeLine={null}
+    isBuffering={false}
+    onElapsedTimeUpdate={[Function]}
+    percentage={0}
+  />
+</div>
+`;
+
+exports[`AudioWidget renders correctly on Safari mobile 1`] = `
+<AudioWidget
+  onEnded={[Function]}
+  onTimeUpdate={[Function]}
+  playerSrc="test.mp3"
+>
+  <div
+    className="audio"
+  >
+    <audio
+      autoPlay={false}
+      onCanPlay={[Function]}
+      onEnded={[Function]}
+      onLoad={[Function]}
+      onLoadStart={[Function]}
+      onLoadedData={[Function]}
+      onSeeked={[Function]}
+      onSeeking={[Function]}
+      onTimeUpdate={[Function]}
+      src="test.mp3"
+    />
+    <ProgressBar
+      autoPlay={false}
+      currentTime={0}
+      duration={0}
+      hideTimeLine={
+        Array [
+          "iPad",
+        ]
+      }
+      isBuffering={false}
+      onElapsedTimeUpdate={[Function]}
+      percentage={0}
+    >
+      <div
+        className="progress"
+      >
+        <div />
+        <div
+          className="counters"
+        >
+          <span />
+          <span />
+        </div>
+      </div>
+    </ProgressBar>
+  </div>
+</AudioWidget>
+`;
