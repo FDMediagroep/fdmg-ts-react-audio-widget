@@ -1,0 +1,66 @@
+{
+  "name": "fdmg-ts-react-audio-widget",
+  "version": "1.0.0",
+  "description": "ReactJS AudioWidget component",
+  "main": "dist/AudioWidget.js",
+  "types": "dist/AudioWidget.d.ts",
+  "scripts": {
+    "release": "npm update && npm install && yarn && npm run test && npm run lint && tsc -d",
+    "test": "jest",
+    "lint": "tslint -p .",
+    "updateSnapshot": "jest --updateSnapshot",
+    "u": "npm test -- -u"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:FDMediagroep/fdmg-ts-react-audio-widget.git"
+  },
+  "author": "Willem Liu, Alexander Eerenberg",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^21.1.8",
+    "@types/react": "^16.0.31",
+    "coveralls": "^3.0.0",
+    "enzyme": "^3.2.0",
+    "enzyme-adapter-react-16": "^1.1.0",
+    "enzyme-to-json": "^3.3.0",
+    "jest": "^21.2.1",
+    "jest-cli": "^21.2.1",
+    "raf": "^3.4.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-test-renderer": "^16.2.0",
+    "ts-jest": "^21.2.4",
+    "tslint": "^5.8.0",
+    "tslint-react": "^3.2.0",
+    "typescript": "^2.6.2"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "setupFiles": [
+      "raf/polyfill"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
+    ],
+    "collectCoverage": true,
+    "coverageDirectory": "dist/coverage",
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text",
+      "text-summary"
+    ],
+    "mapCoverage": true
+  },
+  "dependencies": {
+    "fdmg-ts-react-progress-bar": "^1.0.0"
+  }
+}
