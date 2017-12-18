@@ -65,5 +65,19 @@ export default class foo {
 
 ### Resulting HTML
 ```
-
+<div class="audio">
+    <audio src="test.mp3" autoplay="true"></audio>
+    <div class="progress">
+        <div>
+            <div class="time-line">
+                <span class="time-line-progress-bar" style="width: 4%;"></span>
+                <input type="range" step="0.01">
+            </div>
+        </div>
+        <div class="counters">
+            <span>12s</span>
+            <span>5m 0s</span>
+        </div>
+    </div>
+</div>
 ```
