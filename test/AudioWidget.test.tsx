@@ -121,7 +121,8 @@ describe('AudioWidget', () => {
             <AudioWidget
                 playerSrc={'test.mp3'}
                 onEnded={empty}
-                v            />);
+                onTimeUpdate={empty}
+            />);
 
         audioComponent.find('audio');
 

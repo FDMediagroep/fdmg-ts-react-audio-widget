@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@fdmg/ts-react-progress-bar@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/@fdmg/ts-react-progress-bar/-/ts-react-progress-bar-1.0.1.tgz#0f48c784b6f57c9dd9afab6409699d6245cece0f"
+
 "@types/jest@^21.1.8":
   version "21.1.8"
   resolved "https://registry.npmjs.org/@types/jest/-/jest-21.1.8.tgz#d497213725684f1e5a37900b17a47c9c018f1a97"
@@ -959,10 +963,6 @@ fbjs@^0.8.16:
     promise "^7.1.1"
     setimmediate "^1.0.5"
     ua-parser-js "^0.7.9"
-
-fdmg-ts-react-progress-bar@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/fdmg-ts-react-progress-bar/-/fdmg-ts-react-progress-bar-1.0.0.tgz#dfbc12474d8aca2dc03fe429bdbc95ace072db05"
 
 filename-regex@^2.0.0:
   version "2.0.1"

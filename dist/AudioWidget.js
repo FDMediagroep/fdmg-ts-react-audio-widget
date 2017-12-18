@@ -11,7 +11,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var fdmg_ts_react_progress_bar_1 = require("fdmg-ts-react-progress-bar");
+var ts_react_progress_bar_1 = require("@fdmg/ts-react-progress-bar");
 /**
  * AudioWidget composition - Renders a HTML5 audio element and a progress bar.
  */
@@ -207,7 +207,7 @@ var AudioWidget = /** @class */ (function (_super) {
         var _this = this;
         return (React.createElement("div", { className: "audio" },
             React.createElement("audio", { ref: function (audioPlayer) { _this.audioPlayer = audioPlayer; }, src: this.props.playerSrc, onCanPlay: this.handleOnCanPlay, onEnded: this.handleOnEnded, onTimeUpdate: this.handleOnTimeUpdate, autoPlay: this.state.autoPlay, onLoadStart: this.handleOnLoadStart, onLoad: this.handleOnLoad, onLoadedData: this.handleOnLoadedData, onSeeking: this.handleOnSeeking, onSeeked: this.handleOnSeeked }),
-            React.createElement(fdmg_ts_react_progress_bar_1.default, { ref: function (progressBar) { _this.progressBar = progressBar; }, currentTime: this.state.currentTime, duration: this.state.duration, percentage: this.state.percentage, onElapsedTimeUpdate: this.handleUpdateElapsedTime, autoPlay: this.state.autoPlay, isBuffering: this.state.buffering, hideTimeLine: !this.state.autoPlay && this.isSafariMobile() })));
+            React.createElement(ts_react_progress_bar_1.default, { ref: function (progressBar) { _this.progressBar = progressBar; }, currentTime: this.state.currentTime, duration: this.state.duration, percentage: this.state.percentage, onElapsedTimeUpdate: this.handleUpdateElapsedTime, autoPlay: this.state.autoPlay, isBuffering: this.state.buffering, hideTimeLine: !this.state.autoPlay && this.isSafariMobile() })));
     };
     return AudioWidget;
 }(React.Component));

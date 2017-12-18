@@ -1,6 +1,6 @@
 {
-  "name": "fdmg-ts-react-audio-widget",
-  "version": "1.0.2",
+  "name": "@fdmg/ts-react-audio-widget",
+  "version": "1.0.3",
   "description": "ReactJS AudioWidget component",
   "main": "dist/AudioWidget.js",
   "types": "dist/AudioWidget.d.ts",
@@ -14,6 +14,9 @@
   "repository": {
     "type": "git",
     "url": "git@github.com:FDMediagroep/fdmg-ts-react-audio-widget.git"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "author": "Willem Liu, Alexander Eerenberg",
   "license": "ISC",
@@ -61,6 +64,6 @@
     "mapCoverage": true
   },
   "dependencies": {
-    "fdmg-ts-react-progress-bar": "^1.0.0"
+    "@fdmg/ts-react-progress-bar": "^1.0.1"
   }
 }

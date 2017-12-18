@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ProgressBar from "fdmg-ts-react-progress-bar";
+import ProgressBar from "@fdmg/ts-react-progress-bar";
 
 export interface Props {
     playerSrc: string;
