@@ -4,6 +4,8 @@
 [![npm version](https://badge.fury.io/js/%40fdmg%2Fts-react-audio-widget.svg)](https://badge.fury.io/js/%40fdmg%2Fts-react-audio-widget)
 
 # fdmg-ts-react-audio-widget
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/FDMediagroep/fdmg-ts-react-audio-widget.svg)](https://greenkeeper.io/)
 [ReactJS](https://reactjs.org/) AudioWidget component. This component renders a stand-alone Audio Widget for playing
 audio files. All you need is some styling and you're good to go.
 
