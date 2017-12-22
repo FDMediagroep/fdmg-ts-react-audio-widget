@@ -99,6 +99,7 @@ var AudioWidget = /** @class */ (function (_super) {
      */
     AudioWidget.prototype.handleUpdateElapsedTime = function (e) {
         this.audioPlayer.currentTime = this.getElapsedTimeFromPercentage(e.target.value);
+        this.play();
     };
     /**
      * On every audio element time update event the current time and percentage state will be updated

@@ -1,6 +1,6 @@
 {
   "name": "@fdmg/ts-react-audio-widget",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "ReactJS AudioWidget component",
   "main": "dist/AudioWidget.js",
   "types": "dist/AudioWidget.d.ts",
@@ -34,8 +34,8 @@
     "enzyme-to-json": "^3.3.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.6",
-    "jest": "^22.0.1",
-    "jest-cli": "^22.0.1",
+    "jest": "^22.0.4",
+    "jest-cli": "^22.0.4",
     "node-sass": "^4.7.2",
     "node-sass-tilde-importer": "^1.0.0",
     "preact": "^8.2.7",

@@ -127,6 +127,7 @@ describe('AudioWidget', () => {
         audioComponent.find('audio');
 
         audioComponent.find('input').simulate('change', { target: { value: 75 }});
+        expect(audioComponent.instance().state.autoPlay).toBeTruthy();
         expect(spy).toHaveBeenCalled();
     });
 

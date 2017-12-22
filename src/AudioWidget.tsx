@@ -108,6 +108,7 @@ export default class AudioWidget extends React.Component<Props, any> {
      */
     handleUpdateElapsedTime(e) {
         this.audioPlayer.currentTime = this.getElapsedTimeFromPercentage(e.target.value);
+        this.play();
     }
 
     /**
