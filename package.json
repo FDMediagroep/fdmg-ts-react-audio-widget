@@ -24,7 +24,7 @@
   "author": "Willem Liu, Alexander Eerenberg",
   "license": "ISC",
   "devDependencies": {
-    "@types/jest": "^21.1.9",
+    "@types/jest": "^22.0.0",
     "@types/react": "^16.0.31",
     "awesome-typescript-loader": "^3.4.1",
     "coveralls": "^3.0.0",
