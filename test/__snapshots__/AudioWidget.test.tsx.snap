@@ -14,6 +14,7 @@ exports[`AudioWidget renders correctly 1`] = `
     onPlaying={[Function]}
     onSeeked={[Function]}
     onSeeking={[Function]}
+    onSuspend={[Function]}
     onTimeUpdate={[Function]}
     src="test.mp3"
   />
@@ -48,6 +49,7 @@ exports[`AudioWidget renders correctly on Safari mobile 1`] = `
       onPlaying={[Function]}
       onSeeked={[Function]}
       onSeeking={[Function]}
+      onSuspend={[Function]}
       onTimeUpdate={[Function]}
       src="test.mp3"
     />

@@ -10,6 +10,7 @@ export interface Props {
     onPlaying?: (...args: any[]) => void;
     onSeeked?: (...args: any[]) => void;
     onSeeking?: (...args: any[]) => void;
+    onSuspend?: (...args: any[]) => void;
     onTimeUpdate?: (...args: any[]) => void;
 }
 /**
@@ -52,6 +53,7 @@ export default class AudioWidget extends React.Component<Props, any> {
      */
     handleOnTimeUpdate(...args: any[]): void;
     handleOnPlaying(...args: any[]): void;
+    handleOnSuspend(...args: any[]): void;
     play(): void;
     pause(): void;
     buffering(): void;

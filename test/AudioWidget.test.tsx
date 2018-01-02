@@ -26,6 +26,8 @@ describe('AudioWidget', () => {
                 onLoadStart={empty}
                 onCanPlay={empty}
                 onLoad={empty}
+                onPlaying={empty}
+                onSuspend={empty}
             />);
         const audioEl = component.find('audio');
         expect(toJson(component)).toMatchSnapshot();

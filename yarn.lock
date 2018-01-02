@@ -14,9 +14,9 @@
   version "1.0.2"
   resolved "https://registry.npmjs.org/@fdmg/ts-react-progress-bar/-/ts-react-progress-bar-1.0.2.tgz#847f8e3c849ae2d3ff3a33cdd60fcb44da6ee780"
 
-"@types/jest@^21.1.10":
-  version "21.1.10"
-  resolved "https://registry.npmjs.org/@types/jest/-/jest-21.1.10.tgz#dcacb5217ddf997a090cc822bba219b4b2fd7984"
+"@types/jest@^22.0.0":
+  version "22.0.0"
+  resolved "https://registry.npmjs.org/@types/jest/-/jest-22.0.0.tgz#23009941178aad7979a9591e026f7a96054d7bc0"
 
 "@types/node@*":
   version "8.0.57"

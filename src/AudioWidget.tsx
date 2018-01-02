@@ -11,6 +11,7 @@ export interface Props {
     onPlaying?: (...args: any[]) => void;
     onSeeked?: (...args: any[]) => void;
     onSeeking?: (...args: any[]) => void;
+    onSuspend?: (...args: any[]) => void;
     onTimeUpdate?: (...args: any[]) => void;
 }
 
@@ -53,6 +54,7 @@ export default class AudioWidget extends React.Component<Props, any> {
         this.handleOnPlaying = this.handleOnPlaying.bind(this);
         this.handleOnSeeked = this.handleOnSeeked.bind(this);
         this.handleOnSeeking = this.handleOnSeeking.bind(this);
+        this.handleOnSuspend = this.handleOnSuspend.bind(this);
     }
 
     handleOnCanPlay(...args) {
@@ -129,6 +131,10 @@ export default class AudioWidget extends React.Component<Props, any> {
         if (this.props.onPlaying) { this.props.onPlaying(...args); }
     }
 
+    handleOnSuspend(...args) {
+        if (this.props.onSuspend) { this.props.onSuspend(...args); }
+    }
+
     play() {
         this.setState({autoPlay: true});
         this.audioPlayer.play();
@@ -196,9 +202,10 @@ export default class AudioWidget extends React.Component<Props, any> {
                     onLoadStart={this.handleOnLoadStart}
                     onLoad={this.handleOnLoad}
                     onLoadedData={this.handleOnLoadedData}
+                    onPlaying={this.handleOnPlaying}
                     onSeeking={this.handleOnSeeking}
                     onSeeked={this.handleOnSeeked}
-                    onPlaying={this.handleOnPlaying}
+                    onSuspend={this.handleOnSuspend}
                 />
 
                 <ProgressBar

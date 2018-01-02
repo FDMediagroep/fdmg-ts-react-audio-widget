@@ -43,6 +43,7 @@ var AudioWidget = /** @class */ (function (_super) {
         _this.handleOnPlaying = _this.handleOnPlaying.bind(_this);
         _this.handleOnSeeked = _this.handleOnSeeked.bind(_this);
         _this.handleOnSeeking = _this.handleOnSeeking.bind(_this);
+        _this.handleOnSuspend = _this.handleOnSuspend.bind(_this);
         return _this;
     }
     AudioWidget.prototype.handleOnCanPlay = function () {
@@ -127,6 +128,16 @@ var AudioWidget = /** @class */ (function (_super) {
         }
         if (this.props.onPlaying) {
             (_a = this.props).onPlaying.apply(_a, args);
+        }
+        var _a;
+    };
+    AudioWidget.prototype.handleOnSuspend = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        if (this.props.onSuspend) {
+            (_a = this.props).onSuspend.apply(_a, args);
         }
         var _a;
     };
@@ -218,7 +229,7 @@ var AudioWidget = /** @class */ (function (_super) {
     AudioWidget.prototype.render = function () {
         var _this = this;
         return (React.createElement("div", { className: "audio" },
-            React.createElement("audio", { ref: function (audioPlayer) { _this.audioPlayer = audioPlayer; }, src: this.props.playerSrc, onCanPlay: this.handleOnCanPlay, onEnded: this.handleOnEnded, onTimeUpdate: this.handleOnTimeUpdate, autoPlay: this.state.autoPlay, onLoadStart: this.handleOnLoadStart, onLoad: this.handleOnLoad, onLoadedData: this.handleOnLoadedData, onSeeking: this.handleOnSeeking, onSeeked: this.handleOnSeeked, onPlaying: this.handleOnPlaying }),
+            React.createElement("audio", { ref: function (audioPlayer) { _this.audioPlayer = audioPlayer; }, src: this.props.playerSrc, onCanPlay: this.handleOnCanPlay, onEnded: this.handleOnEnded, onTimeUpdate: this.handleOnTimeUpdate, autoPlay: this.state.autoPlay, onLoadStart: this.handleOnLoadStart, onLoad: this.handleOnLoad, onLoadedData: this.handleOnLoadedData, onPlaying: this.handleOnPlaying, onSeeking: this.handleOnSeeking, onSeeked: this.handleOnSeeked, onSuspend: this.handleOnSuspend }),
             React.createElement(ts_react_progress_bar_1.default, { ref: function (progressBar) { _this.progressBar = progressBar; }, currentTime: this.state.currentTime, duration: this.state.duration, percentage: this.state.percentage, onElapsedTimeUpdate: this.handleUpdateElapsedTime, autoPlay: this.state.autoPlay, isBuffering: this.state.buffering, hideTimeLine: !this.state.autoPlay && this.isSafariMobile() })));
     };
     return AudioWidget;
