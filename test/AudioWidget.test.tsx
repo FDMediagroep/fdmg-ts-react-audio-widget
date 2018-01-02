@@ -26,6 +26,8 @@ describe('AudioWidget', () => {
                 onLoadStart={empty}
                 onCanPlay={empty}
                 onLoad={empty}
+                onPause={empty}
+                onPlay={empty}
                 onPlaying={empty}
                 onSuspend={empty}
             />);

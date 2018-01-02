@@ -7,6 +7,8 @@ export interface Props {
     onLoadStart?: (...args: any[]) => void;
     onLoad?: (...args: any[]) => void;
     onLoadedData?: (...args: any[]) => void;
+    onPause?: (...args: any[]) => void;
+    onPlay?: (...args: any[]) => void;
     onPlaying?: (...args: any[]) => void;
     onSeeked?: (...args: any[]) => void;
     onSeeking?: (...args: any[]) => void;
@@ -52,6 +54,8 @@ export default class AudioWidget extends React.Component<Props, any> {
      * with a new value and thus triggers a re-render of the current time counter and progress bar.
      */
     handleOnTimeUpdate(...args: any[]): void;
+    handleOnPause(...args: any[]): void;
+    handleOnPlay(...args: any[]): void;
     handleOnPlaying(...args: any[]): void;
     handleOnSuspend(...args: any[]): void;
     play(): void;

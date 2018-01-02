@@ -8,6 +8,8 @@ export interface Props {
     onLoadStart?: (...args: any[]) => void;
     onLoad?: (...args: any[]) => void;
     onLoadedData?: (...args: any[]) => void;
+    onPause?: (...args: any[]) => void;
+    onPlay?: (...args: any[]) => void;
     onPlaying?: (...args: any[]) => void;
     onSeeked?: (...args: any[]) => void;
     onSeeking?: (...args: any[]) => void;
@@ -51,6 +53,8 @@ export default class AudioWidget extends React.Component<Props, any> {
         this.handleOnLoad = this.handleOnLoad.bind(this);
         this.handleOnLoadedData = this.handleOnLoadedData.bind(this);
         this.handleOnLoadStart = this.handleOnLoadStart.bind(this);
+        this.handleOnPause = this.handleOnPause.bind(this);
+        this.handleOnPlay = this.handleOnPlay.bind(this);
         this.handleOnPlaying = this.handleOnPlaying.bind(this);
         this.handleOnSeeked = this.handleOnSeeked.bind(this);
         this.handleOnSeeking = this.handleOnSeeking.bind(this);
@@ -125,6 +129,14 @@ export default class AudioWidget extends React.Component<Props, any> {
             currentTime : this.convertToReadableTime(this.audioPlayer.currentTime),
             percentage : this.calculateElapsedPercentage(this.audioPlayer.currentTime, this.audioPlayer.duration)
         });
+    }
+
+    handleOnPause(...args) {
+        if (this.props.onPause) { this.props.onPause(...args); }
+    }
+
+    handleOnPlay(...args) {
+        if (this.props.onPlay) { this.props.onPlay(...args); }
     }
 
     handleOnPlaying(...args) {
@@ -202,6 +214,8 @@ export default class AudioWidget extends React.Component<Props, any> {
                     onLoadStart={this.handleOnLoadStart}
                     onLoad={this.handleOnLoad}
                     onLoadedData={this.handleOnLoadedData}
+                    onPause={this.handleOnPause}
+                    onPlay={this.handleOnPlay}
                     onPlaying={this.handleOnPlaying}
                     onSeeking={this.handleOnSeeking}
                     onSeeked={this.handleOnSeeked}
