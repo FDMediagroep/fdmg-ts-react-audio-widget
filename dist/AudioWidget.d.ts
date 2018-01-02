@@ -7,6 +7,7 @@ export interface Props {
     onLoadStart?: (...args: any[]) => void;
     onLoad?: (...args: any[]) => void;
     onLoadedData?: (...args: any[]) => void;
+    onPlaying?: (...args: any[]) => void;
     onSeeked?: (...args: any[]) => void;
     onSeeking?: (...args: any[]) => void;
     onTimeUpdate?: (...args: any[]) => void;
@@ -41,8 +42,8 @@ export default class AudioWidget extends React.Component<Props, any> {
      */
     getElapsedTimeFromPercentage(percentage: any): number;
     /**
-     * Callback for when the progressbar elapsed time is changed. Given is e.target.value which is the track's
-     * percentage. It calculates the elapsed time from this percentage and updates the player controls.
+     * Callback for when the progressbar elapsed time is changed through user-interaction. Given is e.target.value
+     * which is the track's percentage. It calculates the elapsed time from this percentage and updates the player controls.
      */
     handleUpdateElapsedTime(e: any): void;
     /**
@@ -50,6 +51,7 @@ export default class AudioWidget extends React.Component<Props, any> {
      * with a new value and thus triggers a re-render of the current time counter and progress bar.
      */
     handleOnTimeUpdate(...args: any[]): void;
+    handleOnPlaying(...args: any[]): void;
     play(): void;
     pause(): void;
     buffering(): void;

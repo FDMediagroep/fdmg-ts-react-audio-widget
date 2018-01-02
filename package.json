@@ -1,6 +1,6 @@
 {
   "name": "@fdmg/ts-react-audio-widget",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "ReactJS AudioWidget component",
   "main": "dist/AudioWidget.js",
   "types": "dist/AudioWidget.d.ts",
@@ -24,12 +24,12 @@
   "author": "Willem Liu, Alexander Eerenberg",
   "license": "ISC",
   "devDependencies": {
-    "@types/jest": "^21.1.9",
+    "@types/jest": "^21.1.10",
     "@types/react": "^16.0.31",
     "awesome-typescript-loader": "^3.4.1",
     "coveralls": "^3.0.0",
     "css-loader": "^0.28.7",
-    "enzyme": "^3.2.0",
+    "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.0",
     "extract-text-webpack-plugin": "^3.0.2",
@@ -48,7 +48,7 @@
     "style-loader": "^0.19.1",
     "ts-jest": "^22.0.0",
     "tslint": "^5.8.0",
-    "tslint-react": "^3.2.0",
+    "tslint-react": "^3.3.3",
     "typescript": "^2.6.2",
     "webpack": "^3.10.0"
   },

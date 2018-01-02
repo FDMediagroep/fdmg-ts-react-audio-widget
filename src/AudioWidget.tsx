@@ -8,6 +8,7 @@ export interface Props {
     onLoadStart?: (...args: any[]) => void;
     onLoad?: (...args: any[]) => void;
     onLoadedData?: (...args: any[]) => void;
+    onPlaying?: (...args: any[]) => void;
     onSeeked?: (...args: any[]) => void;
     onSeeking?: (...args: any[]) => void;
     onTimeUpdate?: (...args: any[]) => void;
@@ -49,6 +50,7 @@ export default class AudioWidget extends React.Component<Props, any> {
         this.handleOnLoad = this.handleOnLoad.bind(this);
         this.handleOnLoadedData = this.handleOnLoadedData.bind(this);
         this.handleOnLoadStart = this.handleOnLoadStart.bind(this);
+        this.handleOnPlaying = this.handleOnPlaying.bind(this);
         this.handleOnSeeked = this.handleOnSeeked.bind(this);
         this.handleOnSeeking = this.handleOnSeeking.bind(this);
     }
@@ -103,8 +105,8 @@ export default class AudioWidget extends React.Component<Props, any> {
     }
 
     /**
-     * Callback for when the progressbar elapsed time is changed. Given is e.target.value which is the track's
-     * percentage. It calculates the elapsed time from this percentage and updates the player controls.
+     * Callback for when the progressbar elapsed time is changed through user-interaction. Given is e.target.value
+     * which is the track's percentage. It calculates the elapsed time from this percentage and updates the player controls.
      */
     handleUpdateElapsedTime(e) {
         this.audioPlayer.currentTime = this.getElapsedTimeFromPercentage(e.target.value);
@@ -121,6 +123,10 @@ export default class AudioWidget extends React.Component<Props, any> {
             currentTime : this.convertToReadableTime(this.audioPlayer.currentTime),
             percentage : this.calculateElapsedPercentage(this.audioPlayer.currentTime, this.audioPlayer.duration)
         });
+    }
+
+    handleOnPlaying(...args) {
+        if (this.props.onPlaying) { this.props.onPlaying(...args); }
     }
 
     play() {
@@ -192,6 +198,7 @@ export default class AudioWidget extends React.Component<Props, any> {
                     onLoadedData={this.handleOnLoadedData}
                     onSeeking={this.handleOnSeeking}
                     onSeeked={this.handleOnSeeked}
+                    onPlaying={this.handleOnPlaying}
                 />
 
                 <ProgressBar
