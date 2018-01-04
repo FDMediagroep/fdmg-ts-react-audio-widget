@@ -6,7 +6,7 @@
   "types": "dist/AudioWidget.d.ts",
   "scripts": {
     "lint": "tslint -p .",
-    "release": "npm update && npm install && yarn && npm run test && npm run lint && npm run sass && npm run tsc",
+    "release": "npm upgit stadate && npm install && yarn && npm run test && npm run lint && npm run sass && npm run tsc",
     "sass": "node-sass --importer=node_modules/node-sass-tilde-importer --output-style=compressed scss/AudioWidget.scss > dist/AudioWidget.css",
     "tsc": "tsc -d",
     "test": "jest",
@@ -78,6 +78,6 @@
     "mapCoverage": true
   },
   "dependencies": {
-    "@fdmg/ts-react-progress-bar": "^1.0.2"
+    "@fdmg/ts-react-progress-bar": "^1.0.3"
   }
 }
