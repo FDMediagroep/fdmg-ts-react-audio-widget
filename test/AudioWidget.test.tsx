@@ -12,6 +12,7 @@ describe('AudioWidget', () => {
     const empty = () => {};
 
     beforeAll(() => {
+        (window as any).HTMLAudioElement.prototype.play = () => { /* do nothing */ };
         Enzyme.configure({ adapter: new Adapter() });
     });
 
@@ -39,8 +40,8 @@ describe('AudioWidget', () => {
     test('renders correctly on Safari mobile', () => {
         const oldUserAgent = navigator.userAgent;
         Object.defineProperty(navigator, 'userAgent', {
-            writable: true,
-            value: 'iPad'
+            value: 'iPad',
+            writable: true
         });
         const component = mount(
             <AudioWidget
@@ -50,8 +51,8 @@ describe('AudioWidget', () => {
             />);
         expect(toJson(component)).toMatchSnapshot();
         Object.defineProperty(navigator, 'userAgent', {
-            writable: true,
-            value: oldUserAgent
+            value: oldUserAgent,
+            writable: true
         });
     });
 
@@ -144,8 +145,8 @@ describe('AudioWidget', () => {
             />);
 
         Object.defineProperty(audioComponent.instance().audioPlayer, 'duration', {
-            writable: true,
-            value: 333
+            value: 333,
+            writable: true
         });
 
         expect(audioComponent.instance().getElapsedTimeFromPercentage(33)).toBe(109.89);

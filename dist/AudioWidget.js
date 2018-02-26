@@ -56,7 +56,7 @@ var AudioWidget = /** @class */ (function (_super) {
         if (this.props.onCanPlay) {
             (_a = this.props).onCanPlay.apply(_a, args);
         }
-        this.setInitialAudioState.apply(this, args);
+        this.setInitialAudioState();
         var _a;
     };
     /**
