@@ -35,7 +35,7 @@
     "extract-text-webpack-plugin": "^4.0.0-alpha.0",
     "file-loader": "^1.1.9",
     "jest": "^22.4.2",
-    "jest-cli": "^22.4.2",
+    "jest-cli": "^23.0.0",
     "node-sass": "^4.7.2",
     "node-sass-tilde-importer": "^1.0.1",
     "preact": "^8.2.7",
