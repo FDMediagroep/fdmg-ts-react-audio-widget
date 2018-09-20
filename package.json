@@ -46,7 +46,7 @@
     "react-test-renderer": "^16.2.0",
     "sass-loader": "^7.0.0",
     "style-loader": "^0.23.0",
-    "ts-jest": "^23.0.0",
+    "ts-jest": "23.1.4",
     "tslint": "^5.9.1",
     "tslint-react": "^3.5.1",
     "typescript": "^2.7.2",
