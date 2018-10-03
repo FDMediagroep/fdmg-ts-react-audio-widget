@@ -61,6 +61,10 @@ export default class AudioWidget extends React.Component<Props, any> {
         this.handleOnSuspend = this.handleOnSuspend.bind(this);
     }
 
+    get audioElement() {
+        return this.audioPlayer;
+    }
+
     handleOnCanPlay(...args) {
         if (this.props.onCanPlay) { this.props.onCanPlay(...args); }
         this.setInitialAudioState();
