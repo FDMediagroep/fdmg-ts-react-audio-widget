@@ -39,33 +39,16 @@ export default class AudioWidget extends React.Component<Props, any> {
             percentage: 0
         };
 
-        // Bind functions
-        this.handleOnCanPlay = this.handleOnCanPlay.bind(this);
+        this.setInitialAudioState = this.setInitialAudioState.bind(this);
         this.handleOnTimeUpdate = this.handleOnTimeUpdate.bind(this);
-        this.buffering = this.buffering.bind(this);
-        this.doneBuffering = this.doneBuffering.bind(this);
-        this.doneBuffering = this.doneBuffering.bind(this);
-        this.buffering = this.buffering.bind(this);
-        this.doneBuffering = this.doneBuffering.bind(this);
         this.handleUpdateElapsedTime = this.handleUpdateElapsedTime.bind(this);
-
-        this.handleOnEnded = this.handleOnEnded.bind(this);
-        this.handleOnLoad = this.handleOnLoad.bind(this);
-        this.handleOnLoadedData = this.handleOnLoadedData.bind(this);
-        this.handleOnLoadStart = this.handleOnLoadStart.bind(this);
-        this.handleOnPause = this.handleOnPause.bind(this);
-        this.handleOnPlay = this.handleOnPlay.bind(this);
-        this.handleOnPlaying = this.handleOnPlaying.bind(this);
-        this.handleOnSeeked = this.handleOnSeeked.bind(this);
-        this.handleOnSeeking = this.handleOnSeeking.bind(this);
-        this.handleOnSuspend = this.handleOnSuspend.bind(this);
     }
 
     get audioElement() {
         return this.audioPlayer;
     }
 
-    handleOnCanPlay(...args) {
+    handleOnCanPlay = (...args) => {
         if (this.props.onCanPlay) { this.props.onCanPlay(...args); }
         this.setInitialAudioState();
     }
@@ -84,7 +67,7 @@ export default class AudioWidget extends React.Component<Props, any> {
     /**
      *  Convert seconds (number) to a human readable time format: 2u 3m 34s
      */
-    convertToReadableTime(seconds: number) {
+    convertToReadableTime = (seconds: number) => {
         const h = Math.floor(seconds / 3600);
         const m = Math.floor(seconds % 3600 / 60);
         const s = Math.floor(seconds % 3600 % 60);
@@ -100,7 +83,7 @@ export default class AudioWidget extends React.Component<Props, any> {
      * Calculates the elapsed percentage of audio.
      * currentTime and duration are sent by the audio element.
      */
-    calculateElapsedPercentage(currentTime: number, duration: number) {
+    calculateElapsedPercentage = (currentTime: number, duration: number) => {
         const percentage = currentTime / duration * 100;
         return percentage.toFixed(2);
     }
@@ -110,7 +93,7 @@ export default class AudioWidget extends React.Component<Props, any> {
      * @param percentage
      * @returns {number}
      */
-    getElapsedTimeFromPercentage(percentage) {
+    getElapsedTimeFromPercentage = (percentage) => {
         return (this.audioPlayer.duration / 100) * percentage;
     }
 
@@ -135,64 +118,64 @@ export default class AudioWidget extends React.Component<Props, any> {
         });
     }
 
-    handleOnPause(...args) {
+    handleOnPause = (...args) => {
         if (this.props.onPause) { this.props.onPause(...args); }
     }
 
-    handleOnPlay(...args) {
+    handleOnPlay = (...args) => {
         if (this.props.onPlay) { this.props.onPlay(...args); }
     }
 
-    handleOnPlaying(...args) {
+    handleOnPlaying = (...args) => {
         if (this.props.onPlaying) { this.props.onPlaying(...args); }
     }
 
-    handleOnSuspend(...args) {
+    handleOnSuspend = (...args) => {
         if (this.props.onSuspend) { this.props.onSuspend(...args); }
     }
 
-    play() {
+    play = () => {
         this.setState({autoPlay: true});
         this.audioPlayer.play();
     }
 
-    pause() {
+    pause = () => {
         this.audioPlayer.pause();
     }
 
-    buffering() {
+    buffering = () => {
         this.setState({ buffering : true });
     }
 
-    doneBuffering() {
+    doneBuffering = () => {
         this.setState({ buffering : false });
     }
 
-    handleOnEnded(...args) {
+    handleOnEnded = (...args) => {
         if (this.props.onEnded) { this.props.onEnded(...args); }
     }
 
-    handleOnLoadStart(...args) {
+    handleOnLoadStart = (...args) => {
         if (this.props.onLoadStart) { this.props.onLoadStart(...args); }
         this.buffering();
     }
 
-    handleOnLoad(...args) {
+    handleOnLoad = (...args) => {
         if (this.props.onLoad) { this.props.onLoad(...args); }
         this.doneBuffering();
     }
 
-    handleOnLoadedData(...args) {
+    handleOnLoadedData = (...args) => {
         if (this.props.onLoadedData) { this.props.onLoadedData(...args); }
         this.doneBuffering();
     }
 
-    handleOnSeeking(...args) {
+    handleOnSeeking = (...args) => {
         if (this.props.onSeeking) { this.props.onSeeking(...args); }
         this.buffering();
     }
 
-    handleOnSeeked(...args) {
+    handleOnSeeked = (...args) => {
         if (this.props.onSeeked) { this.props.onSeeked(...args); }
         this.doneBuffering();
     }
@@ -201,7 +184,7 @@ export default class AudioWidget extends React.Component<Props, any> {
      * Returns true when on Safari mobile.
      * @returns {RegExpMatchArray}
      */
-    isSafariMobile() {
+    isSafariMobile = () => {
         return (navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPhone/i));
     }
 
