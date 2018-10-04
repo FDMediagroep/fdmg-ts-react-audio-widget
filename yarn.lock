@@ -20,9 +20,9 @@
   version "1.0.5"
   resolved "https://registry.npmjs.org/@fdmg/ts-react-progress-bar/-/ts-react-progress-bar-1.0.5.tgz#2efdc646194c33be8db04ee72ca6a5aa5c5cb7de"
 
-"@types/jest@^23.0.0":
-  version "23.3.2"
-  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.3.2.tgz#07b90f6adf75d42c34230c026a2529e56c249dbb"
+"@types/jest@^23.3.3":
+  version "23.3.3"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.3.3.tgz#246ebcc52771d2327bb8e37aa971b412d9dc4237"
 
 "@types/node@*":
   version "10.0.0"
