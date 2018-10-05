@@ -33,7 +33,7 @@
     "enzyme-adapter-react-16": "^1.4.0",
     "enzyme-to-json": "^3.3.4",
     "extract-text-webpack-plugin": "^4.0.0-alpha.0",
-    "file-loader": "^1.1.9",
+    "file-loader": "^2.0.0",
     "jest": "^22.4.4",
     "jest-cli": "^23.0.0",
     "node-sass": "^4.9.3",
