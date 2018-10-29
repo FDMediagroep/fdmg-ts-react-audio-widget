@@ -19,6 +19,170 @@ var AudioWidget = /** @class */ (function (_super) {
     __extends(AudioWidget, _super);
     function AudioWidget(props) {
         var _this = _super.call(this, props) || this;
+        _this.handleOnCanPlay = function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            var _a;
+            if (_this.props.onCanPlay) {
+                (_a = _this.props).onCanPlay.apply(_a, args);
+            }
+            _this.setInitialAudioState();
+        };
+        /**
+         *  Convert seconds (number) to a human readable time format: 2u 3m 34s
+         */
+        _this.convertToReadableTime = function (seconds) {
+            var h = Math.floor(seconds / 3600);
+            var m = Math.floor(seconds % 3600 / 60);
+            var s = Math.floor(seconds % 3600 % 60);
+            var hDisplay = h > 0 ? h + "u " : "";
+            var mDisplay = m > 0 ? m + "m " : "";
+            var sDisplay = s > 0 ? s + "s" : "";
+            return hDisplay + mDisplay + sDisplay;
+        };
+        /**
+         * Calculates the elapsed percentage of audio.
+         * currentTime and duration are sent by the audio element.
+         */
+        _this.calculateElapsedPercentage = function (currentTime, duration) {
+            var percentage = currentTime / duration * 100;
+            return percentage.toFixed(2);
+        };
+        /**
+         * Calculates the elapsed time from the given percentage.
+         * @param percentage
+         * @returns {number}
+         */
+        _this.getElapsedTimeFromPercentage = function (percentage) {
+            return (_this.audioPlayer.duration / 100) * percentage;
+        };
+        _this.handleOnPause = function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            var _a;
+            if (_this.props.onPause) {
+                (_a = _this.props).onPause.apply(_a, args);
+            }
+        };
+        _this.handleOnPlay = function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            var _a;
+            if (_this.props.onPlay) {
+                (_a = _this.props).onPlay.apply(_a, args);
+            }
+        };
+        _this.handleOnPlaying = function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            var _a;
+            if (_this.props.onPlaying) {
+                (_a = _this.props).onPlaying.apply(_a, args);
+            }
+        };
+        _this.handleOnSuspend = function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            var _a;
+            if (_this.props.onSuspend) {
+                (_a = _this.props).onSuspend.apply(_a, args);
+            }
+        };
+        _this.play = function () {
+            _this.setState({ autoPlay: true });
+            _this.audioPlayer.play();
+        };
+        _this.pause = function () {
+            _this.audioPlayer.pause();
+        };
+        _this.buffering = function () {
+            _this.setState({ buffering: true });
+        };
+        _this.doneBuffering = function () {
+            _this.setState({ buffering: false });
+        };
+        _this.handleOnEnded = function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            var _a;
+            if (_this.props.onEnded) {
+                (_a = _this.props).onEnded.apply(_a, args);
+            }
+        };
+        _this.handleOnLoadStart = function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            var _a;
+            if (_this.props.onLoadStart) {
+                (_a = _this.props).onLoadStart.apply(_a, args);
+            }
+            _this.buffering();
+        };
+        _this.handleOnLoad = function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            var _a;
+            if (_this.props.onLoad) {
+                (_a = _this.props).onLoad.apply(_a, args);
+            }
+            _this.doneBuffering();
+        };
+        _this.handleOnLoadedData = function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            var _a;
+            if (_this.props.onLoadedData) {
+                (_a = _this.props).onLoadedData.apply(_a, args);
+            }
+            _this.doneBuffering();
+        };
+        _this.handleOnSeeking = function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            var _a;
+            if (_this.props.onSeeking) {
+                (_a = _this.props).onSeeking.apply(_a, args);
+            }
+            _this.buffering();
+        };
+        _this.handleOnSeeked = function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            var _a;
+            if (_this.props.onSeeked) {
+                (_a = _this.props).onSeeked.apply(_a, args);
+            }
+            _this.doneBuffering();
+        };
+        /**
+         * Returns true when on Safari mobile.
+         * @returns {RegExpMatchArray}
+         */
+        _this.isSafariMobile = function () {
+            return (navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPhone/i));
+        };
         _this.props = props;
         _this.state = {
             autoPlay: false,
@@ -27,38 +191,18 @@ var AudioWidget = /** @class */ (function (_super) {
             duration: 0,
             percentage: 0
         };
-        // Bind functions
-        _this.handleOnCanPlay = _this.handleOnCanPlay.bind(_this);
+        _this.setInitialAudioState = _this.setInitialAudioState.bind(_this);
         _this.handleOnTimeUpdate = _this.handleOnTimeUpdate.bind(_this);
-        _this.buffering = _this.buffering.bind(_this);
-        _this.doneBuffering = _this.doneBuffering.bind(_this);
-        _this.doneBuffering = _this.doneBuffering.bind(_this);
-        _this.buffering = _this.buffering.bind(_this);
-        _this.doneBuffering = _this.doneBuffering.bind(_this);
         _this.handleUpdateElapsedTime = _this.handleUpdateElapsedTime.bind(_this);
-        _this.handleOnEnded = _this.handleOnEnded.bind(_this);
-        _this.handleOnLoad = _this.handleOnLoad.bind(_this);
-        _this.handleOnLoadedData = _this.handleOnLoadedData.bind(_this);
-        _this.handleOnLoadStart = _this.handleOnLoadStart.bind(_this);
-        _this.handleOnPause = _this.handleOnPause.bind(_this);
-        _this.handleOnPlay = _this.handleOnPlay.bind(_this);
-        _this.handleOnPlaying = _this.handleOnPlaying.bind(_this);
-        _this.handleOnSeeked = _this.handleOnSeeked.bind(_this);
-        _this.handleOnSeeking = _this.handleOnSeeking.bind(_this);
-        _this.handleOnSuspend = _this.handleOnSuspend.bind(_this);
         return _this;
     }
-    AudioWidget.prototype.handleOnCanPlay = function () {
-        var args = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            args[_i] = arguments[_i];
-        }
-        if (this.props.onCanPlay) {
-            (_a = this.props).onCanPlay.apply(_a, args);
-        }
-        this.setInitialAudioState();
-        var _a;
-    };
+    Object.defineProperty(AudioWidget.prototype, "audioElement", {
+        get: function () {
+            return this.audioPlayer;
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * Set the initial state of the audio player
      */
@@ -68,34 +212,6 @@ var AudioWidget = /** @class */ (function (_super) {
             duration: this.convertToReadableTime(this.audioPlayer.duration),
             percentage: this.calculateElapsedPercentage(this.audioPlayer.currentTime, this.audioPlayer.duration)
         });
-    };
-    /**
-     *  Convert seconds (number) to a human readable time format: 2u 3m 34s
-     */
-    AudioWidget.prototype.convertToReadableTime = function (seconds) {
-        var h = Math.floor(seconds / 3600);
-        var m = Math.floor(seconds % 3600 / 60);
-        var s = Math.floor(seconds % 3600 % 60);
-        var hDisplay = h > 0 ? h + "u " : "";
-        var mDisplay = m > 0 ? m + "m " : "";
-        var sDisplay = s > 0 ? s + "s" : "";
-        return hDisplay + mDisplay + sDisplay;
-    };
-    /**
-     * Calculates the elapsed percentage of audio.
-     * currentTime and duration are sent by the audio element.
-     */
-    AudioWidget.prototype.calculateElapsedPercentage = function (currentTime, duration) {
-        var percentage = currentTime / duration * 100;
-        return percentage.toFixed(2);
-    };
-    /**
-     * Calculates the elapsed time from the given percentage.
-     * @param percentage
-     * @returns {number}
-     */
-    AudioWidget.prototype.getElapsedTimeFromPercentage = function (percentage) {
-        return (this.audioPlayer.duration / 100) * percentage;
     };
     /**
      * Callback for when the progressbar elapsed time is changed through user-interaction. Given is e.target.value
@@ -114,6 +230,7 @@ var AudioWidget = /** @class */ (function (_super) {
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
+        var _a;
         if (this.props.onTimeUpdate) {
             (_a = this.props).onTimeUpdate.apply(_a, args);
         }
@@ -121,132 +238,6 @@ var AudioWidget = /** @class */ (function (_super) {
             currentTime: this.convertToReadableTime(this.audioPlayer.currentTime),
             percentage: this.calculateElapsedPercentage(this.audioPlayer.currentTime, this.audioPlayer.duration)
         });
-        var _a;
-    };
-    AudioWidget.prototype.handleOnPause = function () {
-        var args = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            args[_i] = arguments[_i];
-        }
-        if (this.props.onPause) {
-            (_a = this.props).onPause.apply(_a, args);
-        }
-        var _a;
-    };
-    AudioWidget.prototype.handleOnPlay = function () {
-        var args = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            args[_i] = arguments[_i];
-        }
-        if (this.props.onPlay) {
-            (_a = this.props).onPlay.apply(_a, args);
-        }
-        var _a;
-    };
-    AudioWidget.prototype.handleOnPlaying = function () {
-        var args = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            args[_i] = arguments[_i];
-        }
-        if (this.props.onPlaying) {
-            (_a = this.props).onPlaying.apply(_a, args);
-        }
-        var _a;
-    };
-    AudioWidget.prototype.handleOnSuspend = function () {
-        var args = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            args[_i] = arguments[_i];
-        }
-        if (this.props.onSuspend) {
-            (_a = this.props).onSuspend.apply(_a, args);
-        }
-        var _a;
-    };
-    AudioWidget.prototype.play = function () {
-        this.setState({ autoPlay: true });
-        this.audioPlayer.play();
-    };
-    AudioWidget.prototype.pause = function () {
-        this.audioPlayer.pause();
-    };
-    AudioWidget.prototype.buffering = function () {
-        this.setState({ buffering: true });
-    };
-    AudioWidget.prototype.doneBuffering = function () {
-        this.setState({ buffering: false });
-    };
-    AudioWidget.prototype.handleOnEnded = function () {
-        var args = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            args[_i] = arguments[_i];
-        }
-        if (this.props.onEnded) {
-            (_a = this.props).onEnded.apply(_a, args);
-        }
-        var _a;
-    };
-    AudioWidget.prototype.handleOnLoadStart = function () {
-        var args = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            args[_i] = arguments[_i];
-        }
-        if (this.props.onLoadStart) {
-            (_a = this.props).onLoadStart.apply(_a, args);
-        }
-        this.buffering();
-        var _a;
-    };
-    AudioWidget.prototype.handleOnLoad = function () {
-        var args = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            args[_i] = arguments[_i];
-        }
-        if (this.props.onLoad) {
-            (_a = this.props).onLoad.apply(_a, args);
-        }
-        this.doneBuffering();
-        var _a;
-    };
-    AudioWidget.prototype.handleOnLoadedData = function () {
-        var args = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            args[_i] = arguments[_i];
-        }
-        if (this.props.onLoadedData) {
-            (_a = this.props).onLoadedData.apply(_a, args);
-        }
-        this.doneBuffering();
-        var _a;
-    };
-    AudioWidget.prototype.handleOnSeeking = function () {
-        var args = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            args[_i] = arguments[_i];
-        }
-        if (this.props.onSeeking) {
-            (_a = this.props).onSeeking.apply(_a, args);
-        }
-        this.buffering();
-        var _a;
-    };
-    AudioWidget.prototype.handleOnSeeked = function () {
-        var args = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            args[_i] = arguments[_i];
-        }
-        if (this.props.onSeeked) {
-            (_a = this.props).onSeeked.apply(_a, args);
-        }
-        this.doneBuffering();
-        var _a;
-    };
-    /**
-     * Returns true when on Safari mobile.
-     * @returns {RegExpMatchArray}
-     */
-    AudioWidget.prototype.isSafariMobile = function () {
-        return (navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPhone/i));
     };
     AudioWidget.prototype.render = function () {
         var _this = this;
