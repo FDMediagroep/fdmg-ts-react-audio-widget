@@ -78,6 +78,6 @@
     ]
   },
   "dependencies": {
-    "@fdmg/ts-react-progress-bar": "^1.0.5"
+    "@fdmg/ts-react-progress-bar": "^1.0.8"
   }
 }
