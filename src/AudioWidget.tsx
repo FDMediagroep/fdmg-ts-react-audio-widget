@@ -3,6 +3,9 @@ import ProgressBar from "@fdmg/ts-react-progress-bar";
 
 export interface Props {
     playerSrc: string;
+    excludeProgressBar?: boolean;
+    hideProgressBarCurrentTime?: boolean;
+    hideProgressBarDuration?: boolean;
     onCanPlay?: (...args: any[]) => void;
     onEnded?: (...args: any[]) => void;
     onLoadStart?: (...args: any[]) => void;
@@ -29,19 +32,21 @@ export default class AudioWidget extends React.Component<Props, any> {
 
     constructor(props: Props) {
         super(props);
-        this.props = props;
 
         this.state = {
             autoPlay: false,
             buffering: false,
             currentTime: 0,
             duration: 0,
+            hideTimeline: false,
             percentage: 0
         };
 
         this.setInitialAudioState = this.setInitialAudioState.bind(this);
         this.handleOnTimeUpdate = this.handleOnTimeUpdate.bind(this);
         this.handleUpdateElapsedTime = this.handleUpdateElapsedTime.bind(this);
+
+        // this.setState({ hideTimeline: !this.state.autoPlay && this.isSafariMobile() ? true : false });
     }
 
     get audioElement() {
@@ -58,25 +63,10 @@ export default class AudioWidget extends React.Component<Props, any> {
      */
     setInitialAudioState() {
         this.setState({
-            currentTime : this.convertToReadableTime(this.audioPlayer.currentTime),
-            duration : this.convertToReadableTime(this.audioPlayer.duration),
+            currentTime : this.audioPlayer.currentTime,
+            duration : this.audioPlayer.duration,
             percentage : this.calculateElapsedPercentage(this.audioPlayer.currentTime, this.audioPlayer.duration)
         });
-    }
-
-    /**
-     *  Convert seconds (number) to a human readable time format: 2u 3m 34s
-     */
-    convertToReadableTime = (seconds: number) => {
-        const h = Math.floor(seconds / 3600);
-        const m = Math.floor(seconds % 3600 / 60);
-        const s = Math.floor(seconds % 3600 % 60);
-
-        const hDisplay = h > 0 ? h + "u " : "";
-        const mDisplay = m > 0 ? m + "m " : "";
-        const sDisplay = s > 0 ? s + "s" : "";
-
-        return hDisplay + mDisplay + sDisplay;
     }
 
     /**
@@ -113,7 +103,7 @@ export default class AudioWidget extends React.Component<Props, any> {
     handleOnTimeUpdate(...args) {
         if (this.props.onTimeUpdate) { this.props.onTimeUpdate(...args); }
         this.setState({
-            currentTime : this.convertToReadableTime(this.audioPlayer.currentTime),
+            currentTime : this.audioPlayer.currentTime,
             percentage : this.calculateElapsedPercentage(this.audioPlayer.currentTime, this.audioPlayer.duration)
         });
     }
@@ -189,6 +179,22 @@ export default class AudioWidget extends React.Component<Props, any> {
     }
 
     render() {
+        const hideTimeLine = !this.state.autoPlay && this.isSafariMobile() ? true : false;
+        const progressBarComponent = this.props.excludeProgressBar ? "" : (
+            <ProgressBar
+                ref={(progressBar) => { this.progressBar = progressBar; }}
+                currentTime={this.state.currentTime}
+                duration={this.state.duration}
+                percentage={this.state.percentage}
+                onElapsedTimeUpdate={this.handleUpdateElapsedTime}
+                autoPlay={this.state.autoPlay}
+                isBuffering={this.state.buffering}
+                hideTimeLine={hideTimeLine}
+                hideProgressBarCurrentTime={this.props.hideProgressBarCurrentTime}
+                hideProgressBarDuration={this.props.hideProgressBarDuration}
+            />
+        );
+
         return (
             <div className="audio">
                 <audio
@@ -208,17 +214,7 @@ export default class AudioWidget extends React.Component<Props, any> {
                     onSeeked={this.handleOnSeeked}
                     onSuspend={this.handleOnSuspend}
                 />
-
-                <ProgressBar
-                    ref={(progressBar) => { this.progressBar = progressBar; }}
-                    currentTime={this.state.currentTime}
-                    duration={this.state.duration}
-                    percentage={this.state.percentage}
-                    onElapsedTimeUpdate={this.handleUpdateElapsedTime}
-                    autoPlay={this.state.autoPlay}
-                    isBuffering={this.state.buffering}
-                    hideTimeLine={!this.state.autoPlay && this.isSafariMobile()}
-                />
+                {progressBarComponent}
             </div>
         );
     }

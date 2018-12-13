@@ -1,6 +1,9 @@
 import * as React from 'react';
 export interface Props {
     playerSrc: string;
+    excludeProgressBar?: boolean;
+    hideProgressBarCurrentTime?: boolean;
+    hideProgressBarDuration?: boolean;
     onCanPlay?: (...args: any[]) => void;
     onEnded?: (...args: any[]) => void;
     onLoadStart?: (...args: any[]) => void;
@@ -29,10 +32,6 @@ export default class AudioWidget extends React.Component<Props, any> {
      * Set the initial state of the audio player
      */
     setInitialAudioState(): void;
-    /**
-     *  Convert seconds (number) to a human readable time format: 2u 3m 34s
-     */
-    convertToReadableTime: (seconds: number) => string;
     /**
      * Calculates the elapsed percentage of audio.
      * currentTime and duration are sent by the audio element.

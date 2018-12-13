@@ -24,7 +24,7 @@ exports[`AudioWidget renders correctly 1`] = `
     autoPlay={false}
     currentTime={0}
     duration={0}
-    hideTimeLine={null}
+    hideTimeLine={false}
     isBuffering={false}
     onElapsedTimeUpdate={[Function]}
     percentage={0}
@@ -61,11 +61,7 @@ exports[`AudioWidget renders correctly on Safari mobile 1`] = `
       autoPlay={false}
       currentTime={0}
       duration={0}
-      hideTimeLine={
-        Array [
-          "iPad",
-        ]
-      }
+      hideTimeLine={true}
       isBuffering={false}
       onElapsedTimeUpdate={[Function]}
       percentage={0}

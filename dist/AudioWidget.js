@@ -31,18 +31,6 @@ var AudioWidget = /** @class */ (function (_super) {
             _this.setInitialAudioState();
         };
         /**
-         *  Convert seconds (number) to a human readable time format: 2u 3m 34s
-         */
-        _this.convertToReadableTime = function (seconds) {
-            var h = Math.floor(seconds / 3600);
-            var m = Math.floor(seconds % 3600 / 60);
-            var s = Math.floor(seconds % 3600 % 60);
-            var hDisplay = h > 0 ? h + "u " : "";
-            var mDisplay = m > 0 ? m + "m " : "";
-            var sDisplay = s > 0 ? s + "s" : "";
-            return hDisplay + mDisplay + sDisplay;
-        };
-        /**
          * Calculates the elapsed percentage of audio.
          * currentTime and duration are sent by the audio element.
          */
@@ -183,18 +171,19 @@ var AudioWidget = /** @class */ (function (_super) {
         _this.isSafariMobile = function () {
             return (navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPhone/i));
         };
-        _this.props = props;
         _this.state = {
             autoPlay: false,
             buffering: false,
             currentTime: 0,
             duration: 0,
+            hideTimeline: false,
             percentage: 0
         };
         _this.setInitialAudioState = _this.setInitialAudioState.bind(_this);
         _this.handleOnTimeUpdate = _this.handleOnTimeUpdate.bind(_this);
         _this.handleUpdateElapsedTime = _this.handleUpdateElapsedTime.bind(_this);
         return _this;
+        // this.setState({ hideTimeline: !this.state.autoPlay && this.isSafariMobile() ? true : false });
     }
     Object.defineProperty(AudioWidget.prototype, "audioElement", {
         get: function () {
@@ -208,8 +197,8 @@ var AudioWidget = /** @class */ (function (_super) {
      */
     AudioWidget.prototype.setInitialAudioState = function () {
         this.setState({
-            currentTime: this.convertToReadableTime(this.audioPlayer.currentTime),
-            duration: this.convertToReadableTime(this.audioPlayer.duration),
+            currentTime: this.audioPlayer.currentTime,
+            duration: this.audioPlayer.duration,
             percentage: this.calculateElapsedPercentage(this.audioPlayer.currentTime, this.audioPlayer.duration)
         });
     };
@@ -235,15 +224,17 @@ var AudioWidget = /** @class */ (function (_super) {
             (_a = this.props).onTimeUpdate.apply(_a, args);
         }
         this.setState({
-            currentTime: this.convertToReadableTime(this.audioPlayer.currentTime),
+            currentTime: this.audioPlayer.currentTime,
             percentage: this.calculateElapsedPercentage(this.audioPlayer.currentTime, this.audioPlayer.duration)
         });
     };
     AudioWidget.prototype.render = function () {
         var _this = this;
+        var hideTimeLine = !this.state.autoPlay && this.isSafariMobile() ? true : false;
+        var progressBarComponent = this.props.excludeProgressBar ? "" : (React.createElement(ts_react_progress_bar_1.default, { ref: function (progressBar) { _this.progressBar = progressBar; }, currentTime: this.state.currentTime, duration: this.state.duration, percentage: this.state.percentage, onElapsedTimeUpdate: this.handleUpdateElapsedTime, autoPlay: this.state.autoPlay, isBuffering: this.state.buffering, hideTimeLine: hideTimeLine, hideProgressBarCurrentTime: this.props.hideProgressBarCurrentTime, hideProgressBarDuration: this.props.hideProgressBarDuration }));
         return (React.createElement("div", { className: "audio" },
             React.createElement("audio", { ref: function (audioPlayer) { _this.audioPlayer = audioPlayer; }, src: this.props.playerSrc, onCanPlay: this.handleOnCanPlay, onEnded: this.handleOnEnded, onTimeUpdate: this.handleOnTimeUpdate, autoPlay: this.state.autoPlay, onLoadStart: this.handleOnLoadStart, onLoad: this.handleOnLoad, onLoadedData: this.handleOnLoadedData, onPause: this.handleOnPause, onPlay: this.handleOnPlay, onPlaying: this.handleOnPlaying, onSeeking: this.handleOnSeeking, onSeeked: this.handleOnSeeked, onSuspend: this.handleOnSuspend }),
-            React.createElement(ts_react_progress_bar_1.default, { ref: function (progressBar) { _this.progressBar = progressBar; }, currentTime: this.state.currentTime, duration: this.state.duration, percentage: this.state.percentage, onElapsedTimeUpdate: this.handleUpdateElapsedTime, autoPlay: this.state.autoPlay, isBuffering: this.state.buffering, hideTimeLine: !this.state.autoPlay && this.isSafariMobile() })));
+            progressBarComponent));
     };
     return AudioWidget;
 }(React.Component));

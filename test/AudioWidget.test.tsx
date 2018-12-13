@@ -66,17 +66,6 @@ describe('AudioWidget', () => {
         expect(audioComponent.instance().calculateElapsedPercentage(13, 133)).toBe("9.77");
     });
 
-    test('converts seconds to human readable time', () => {
-        const audioComponent = shallow(
-            <AudioWidget
-                playerSrc={'test.mp3'}
-                onEnded={empty}
-                onTimeUpdate={empty}
-            />);
-
-        expect(audioComponent.instance().convertToReadableTime(11234)).toBe('3u 7m 14s');
-    });
-
     test('initial audio state is called by canplay event', () => {
         const spy = jest.spyOn(AudioWidget.prototype, 'setInitialAudioState');
         const audioComponent = mount(
@@ -128,12 +117,24 @@ describe('AudioWidget', () => {
                 onEnded={empty}
                 onTimeUpdate={empty}
             />);
-
         audioComponent.find('audio');
 
         audioComponent.find('input').simulate('change', { target: { value: 75 }});
         expect(audioComponent.instance().state.autoPlay).toBeTruthy();
         expect(spy).toHaveBeenCalled();
+    });
+
+    test('hides progressbar when excludeProgressBar prop is true', () => {
+        const audioComponent = mount(
+            <AudioWidget
+                playerSrc={'test.mp3'}
+                onEnded={empty}
+                onTimeUpdate={empty}
+                excludeProgressBar={true}
+            />);
+        const progressBar = audioComponent.find('input');
+
+        expect(progressBar.length).toBe(0);
     });
 
     test('can calculate elapsed time from percentage', () => {
