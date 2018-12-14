@@ -58,6 +58,8 @@ export default class foo {
                 onEnded={this.handleOnEnded}
                 onSeeking={this.handleOnSeeking}
                 onTimeUpdate={this.handleOnTimeUpdate}
+                hideProgressBarCurrentTime=this.props.ideProgressBarCurrentTime}
+                hideProgressBarDuration={this.props.hideProgressBarDuration}
             />
         );
     }
