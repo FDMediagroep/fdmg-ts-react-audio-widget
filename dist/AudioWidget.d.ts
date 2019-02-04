@@ -4,6 +4,7 @@ export interface Props {
     excludeProgressBar?: boolean;
     hideProgressBarCurrentTime?: boolean;
     hideProgressBarDuration?: boolean;
+    preload?: string;
     onCanPlay?: (...args: any[]) => void;
     onEnded?: (...args: any[]) => void;
     onLoadStart?: (...args: any[]) => void;

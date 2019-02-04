@@ -6,6 +6,7 @@ export interface Props {
     excludeProgressBar?: boolean;
     hideProgressBarCurrentTime?: boolean;
     hideProgressBarDuration?: boolean;
+    preload?: string;
     onCanPlay?: (...args: any[]) => void;
     onEnded?: (...args: any[]) => void;
     onLoadStart?: (...args: any[]) => void;
@@ -198,6 +199,7 @@ export default class AudioWidget extends React.Component<Props, any> {
         return (
             <div className="audio">
                 <audio
+                    preload={this.props.preload ? this.props.preload : "auto"}
                     ref={(audioPlayer) => { this.audioPlayer = audioPlayer; }}
                     src={this.props.playerSrc}
                     onCanPlay={this.handleOnCanPlay}
