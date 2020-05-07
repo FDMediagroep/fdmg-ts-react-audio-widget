@@ -1,4 +1,4 @@
-> :exclamation: **DEPRECATED** :exclamation: : Superseded by @fdmg/design-system. See: https://github.com/FDMediagroep/fd-design-system
+> :exclamation: **DEPRECATED** :exclamation:
 
 # fdmg-ts-react-audio-widget
 
